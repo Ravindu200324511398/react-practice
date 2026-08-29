@@ -72,6 +72,7 @@ const handleSaveChanges = (updatedBook: Book) => {
             {Object.values(row).map((cell) => (
                <td>{cell}</td>   
             ))}
+
             <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
               <Button variant="outline-info" onClick={() => handleEdit(row)}>
                 Update

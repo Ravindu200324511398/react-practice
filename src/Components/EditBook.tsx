@@ -1,7 +1,24 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function EditBook() {
+
+interface Book {
+    bookId: number;
+    title: string;
+    author: string;
+    genre: string;
+    publishedYear: number;
+  }
+
+  interface EditBookProps {
+  show: boolean;
+  selectedBook: Book | null;
+  handleClose: () => void;
+  handleSave: (updatedBook: Book) => void;
+}
+
+
+function EditBook({ show, selectedBook, handleClose, handleSave }: EditBookProps) {
   return (
     <div
       className="modal show"

@@ -66,7 +66,10 @@ const handleDelete = async(bookId: number) => {
 };
 
     return (
-        <>
+      <>
+      <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+      <Button variant="primary">Add</Button>
+      </div>
         <Table striped bordered hover>
       <thead>
         <tr>

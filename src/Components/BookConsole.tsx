@@ -56,6 +56,12 @@ const handleSaveChanges = (updatedBook: Book) => {
   setSelectedBook(null);
 };
 
+const handleDelete = (bookId: number) => {
+  console.log("Delete button clicked for book ID:", bookId);
+  // Here you would typically send a request to your backend API to delete the book
+  // After deleting, you might want to refresh the book list or update the state accordingly
+};
+
     return (
         <>
         <Table striped bordered hover>
@@ -77,7 +83,9 @@ const handleSaveChanges = (updatedBook: Book) => {
               <Button variant="outline-info" onClick={() => handleEdit(row)}>
                 Update
               </Button>
-              <Button variant="outline-danger">Delete</Button>
+              <Button variant="outline-danger" onClick={() => handleDelete(row.bookId)}>
+                Delete
+              </Button>
             </td>
           </tr>
         ))}

@@ -67,8 +67,11 @@ const handleOnSave = () => {
         <FloatingLabel controlId="floatingInput" label="Book Id" className="mb-3">
 
         <Form.Control 
+        readOnly
         type="text" 
         name="bookId"
+        value={book?.bookId}
+        onChange={handleOnChange}
         />
       </FloatingLabel>
 
@@ -76,6 +79,8 @@ const handleOnSave = () => {
         <Form.Control 
         type="text" 
         name="title"
+        value={book?.title}
+        onChange={handleOnChange}
         />
       </FloatingLabel>
       
@@ -83,6 +88,8 @@ const handleOnSave = () => {
         <Form.Control 
         type="text" 
         name="author"
+        value={book?.author}
+        onChange={handleOnChange}
         />
       </FloatingLabel>
 
@@ -90,6 +97,8 @@ const handleOnSave = () => {
         <Form.Control 
         type="text" 
         name="genre"
+        value={book?.genre}
+        onChange={handleOnChange}
         />
       </FloatingLabel>
       
@@ -97,6 +106,8 @@ const handleOnSave = () => {
         <Form.Control 
         type="text" 
         name="publishedYear"
+        value={book?.publishedYear}
+        onChange={handleOnChange}
         />
       </FloatingLabel>
 

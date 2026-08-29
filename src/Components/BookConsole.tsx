@@ -3,6 +3,7 @@ import {getBooks} from '../Service/Books/GetBooks';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import EditBook from './EditBook';
 
 export function BookConsole(){
   interface Book {
@@ -79,12 +80,13 @@ const handleEdit=(row : Book) =>{
               </Button>
               <Button variant="outline-danger">Delete</Button>
             </td>
-        </tr> */}
-
+        </tr>
+ */}
 
 
       </tbody>
     </Table>
+    <EditBook />
         </>
     )
 }

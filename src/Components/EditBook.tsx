@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from 'react';
+import { updateBook } from '../Service/Books/UpdateBook';
 
 
 interface Book {
@@ -17,11 +18,11 @@ interface Book {
   show: boolean;
   selectedBook: Book | null;
   handleClose: () => void;
-  handleSave: (updatedBook: Book) => void;
+  handleUpdate: (updatedBook: Book) => void;
 }
 
 
-function EditBook({ show, selectedBook, handleClose, handleSave }: EditBookProps) {
+function EditBook({ show, selectedBook, handleClose, handleUpdate }: EditBookProps) {
     const [book,setBook] = useState<Book | null>({
         bookId:0,
         title:"",
@@ -51,11 +52,18 @@ const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     });
 };
 
-const handleOnSave = () => {
-    if (book) {
-        handleSave(book);
+const handleOnSave = async() => {
+    try{
+    const updatebook= await updateBook(book?.bookId || 0, book as Book);
+    handleUpdate(updatebook);
+    handleClose();
+    }catch(error){
+        console.error("Error updating book:", error);
     }
-}
+    
+};
+
+   
 
   return (
     <Modal show={show} onHide={handleClose}>

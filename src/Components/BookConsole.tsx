@@ -107,7 +107,7 @@ const handleSaveChanges = (updatedBook: Book) => {
     show = {showEditModal} 
     selectedBook = {selectedBook}
     handleClose = {handleCloseEditModal} 
-    handleSave = {handleSaveChanges} 
+    handleUpdate = {handleSaveChanges} 
     />
         </>
     )

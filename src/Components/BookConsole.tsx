@@ -30,7 +30,7 @@ useEffect(() => {
 
 
 const tHeads:string[] = [
-    "Book ID", "Title", "Author", "Genre", "Published Year"
+    "Book ID", "Title", "Author", "Genre", "Published Year","Actions"
 ];
 
     return (
@@ -49,7 +49,10 @@ const tHeads:string[] = [
             {Object.values(row).map((cell) => (
                <td>{cell}</td>   
             ))}
-            <td><Button variant="outline-info">Update</Button></td>           
+            <td style={{ padding: '5px' }}>
+              <Button variant="outline-info">Update</Button>
+              <Button variant="outline-danger">Delete</Button>
+            </td>
           </tr>
         ))}
       </tbody>

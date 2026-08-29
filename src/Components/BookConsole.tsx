@@ -33,6 +33,10 @@ const tHeads:string[] = [
     "Book ID", "Title", "Author", "Genre", "Published Year","Actions"
 ];
 
+const handleEdit=(row : Book) =>{
+  console.log("Edit button clicked for row:", row);
+}
+
     return (
         <>
         <Table striped bordered hover>
@@ -50,13 +54,32 @@ const tHeads:string[] = [
                <td>{cell}</td>   
             ))}
             <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-              <Button variant="outline-info">Update</Button>
+              <Button variant="outline-info" onClick={() => handleEdit(row)}>
+                Update
+              </Button>
               <Button variant="outline-danger">Delete</Button>
             </td>
           </tr>
         ))}
 
         
+
+
+        {/* <tr>
+          <td>B001</td>
+          <td>The Great Gatsby</td>
+          <td>F. Scott Fitzgerald</td>
+          <td>Fiction</td>
+          <td>1925</td>
+          <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
+              <Button variant="outline-info" onClick={handleEdit}>
+                Update
+              </Button>
+              <Button variant="outline-danger">Delete</Button>
+            </td>
+        </tr> */}
+
+
 
       </tbody>
     </Table>

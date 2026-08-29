@@ -1,14 +1,25 @@
 import Table from 'react-bootstrap/Table';
 import {getBooks} from '../Service/Books/GetBooks';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 export function BookConsole(){
+  interface Book {
+    bookId: number;
+    title: string;
+    author: string;
+    genre: string;
+    publishedYear: number;
+  }
+
+const [books, setBooks] = useState<Book[]>([]);
 
 useEffect(() => {
     const loadData = async () => {
         try{
             const bookDetails = await getBooks();
             console.log("Book details:", bookDetails);
+            setBooks(bookDetails);
         } catch (error) {
             console.error("Error loading book details:", error);
         }
@@ -32,23 +43,13 @@ const tHeads:string[] = [
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {books.map((row) => (
+          <tr key={row.bookId}>
+            {Object.values(row).map((cell) => (
+               <td>{cell}</td>   
+            ))}
+          </tr>
+        ))}
       </tbody>
     </Table>
         </>

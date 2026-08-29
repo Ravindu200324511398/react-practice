@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import EditBook from './EditBook';
 import { deleteBook } from '../Service/Books/DeleteBook';
+import AddBook from './AddBook';  
 
 export function BookConsole(){
   interface Book {
@@ -18,6 +19,10 @@ export function BookConsole(){
 const [books, setBooks] = useState<Book[]>([]);
 const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 const [showEditModal, setShowEditModal] = useState(false);
+
+const [showAddModal, setShowAddModal] = useState(false);
+
+
 
 
 useEffect(() => {
@@ -65,10 +70,22 @@ const handleDelete = async(bookId: number) => {
   setBooks((books) => books.filter((book) => book.bookId !== bookId));
 };
 
+const handleCloseAddModal = () => {
+  setShowAddModal(false);
+};
+
+const handleSaveNewBook = (newBook: Book) => {
+  console.log("New book added:", newBook);
+  setBooks((prevBooks) => [...prevBooks, newBook]);
+  setShowAddModal(false);
+};
+
     return (
       <>
-      <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
-      <Button variant="primary">Add</Button>
+      <div style={{ margin: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+      <Button variant="primary" onClick={() => setShowAddModal(true)}>
+        Add
+      </Button>
       </div>
         <Table striped bordered hover>
       <thead>
@@ -122,6 +139,13 @@ const handleDelete = async(bookId: number) => {
     selectedBook = {selectedBook}
     handleClose = {handleCloseEditModal} 
     handleUpdate = {handleSaveChanges} 
+    />
+
+    <AddBook 
+    show = {showAddModal}
+    handleClose = {handleCloseAddModal} 
+    handleAdd = {handleSaveNewBook}
+
     />
         </>
     )

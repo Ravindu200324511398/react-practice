@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import EditBook from './EditBook';
+import { deleteBook } from '../Service/Books/DeleteBook';
 
 export function BookConsole(){
   interface Book {
@@ -56,10 +57,12 @@ const handleSaveChanges = (updatedBook: Book) => {
   setSelectedBook(null);
 };
 
-const handleDelete = (bookId: number) => {
+const handleDelete = async(bookId: number) => {
   console.log("Delete button clicked for book ID:", bookId);
   // Here you would typically send a request to your backend API to delete the book
   // After deleting, you might want to refresh the book list or update the state accordingly
+  await deleteBook(bookId)
+  setBooks((books) => books.filter((book) => book.bookId !== bookId));
 };
 
     return (

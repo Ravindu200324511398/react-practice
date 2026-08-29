@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Modal from 'react-bootstrap/Modal';
+import { useEffect, useState } from 'react';
 
 
 interface Book {
@@ -21,6 +22,41 @@ interface Book {
 
 
 function EditBook({ show, selectedBook, handleClose, handleSave }: EditBookProps) {
+    const [book,setBook] = useState<Book | null>({
+        bookId:0,
+        title:"",
+        author:"",
+        genre:"",
+        publishedYear:0
+    });
+
+useEffect(() => {
+    if (selectedBook) {
+        setBook({...selectedBook});
+    }
+}, [selectedBook]);
+
+const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setBook((prevBook) => {
+        if (!prevBook) {
+            return prevBook;
+        }
+
+        return {
+            ...prevBook,
+            [name]: name === 'bookId' || name === 'publishedYear' ? Number(value) : value,
+        } as Book;
+    });
+};
+
+const handleOnSave = () => {
+    if (book) {
+        handleSave(book);
+    }
+}
+
   return (
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -63,7 +99,7 @@ function EditBook({ show, selectedBook, handleClose, handleSave }: EditBookProps
         name="publishedYear"
         />
       </FloatingLabel>
-      
+
       
         
         </Modal.Body>
@@ -71,7 +107,7 @@ function EditBook({ show, selectedBook, handleClose, handleSave }: EditBookProps
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleOnSave}>
             Save Changes
           </Button>
         </Modal.Footer>

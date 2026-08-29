@@ -16,6 +16,8 @@ export function BookConsole(){
 
 const [books, setBooks] = useState<Book[]>([]);
 const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+const [showEditModal, setShowEditModal] = useState(false);
+
 
 useEffect(() => {
     const loadData = async () => {
@@ -38,7 +40,21 @@ const tHeads:string[] = [
 const handleEdit=(row : Book) =>{
   console.log("Edit button clicked for row:", row);
   setSelectedBook(row);
+  setShowEditModal(true);
 }
+
+const handleCloseEditModal = () => {
+  setShowEditModal(false);
+  setSelectedBook(null);
+};
+
+const handleSaveChanges = (updatedBook: Book) => {
+  console.log("Save changes clicked for book:", updatedBook);
+  // Here you would typically send the updated book data to your backend API
+  // After saving, you might want to refresh the book list or update the state accordingly
+  setShowEditModal(false);
+  setSelectedBook(null);
+};
 
     return (
         <>
@@ -86,7 +102,12 @@ const handleEdit=(row : Book) =>{
 
       </tbody>
     </Table>
-    <EditBook />
+    <EditBook 
+    show = {showEditModal} 
+    selectedBook = {selectedBook}
+    handleClose = {handleCloseEditModal} 
+    handleSave = {handleSaveChanges} 
+    />
         </>
     )
 }

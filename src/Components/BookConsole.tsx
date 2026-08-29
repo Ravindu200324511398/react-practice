@@ -14,6 +14,7 @@ export function BookConsole(){
   }
 
 const [books, setBooks] = useState<Book[]>([]);
+const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
 useEffect(() => {
     const loadData = async () => {
@@ -35,6 +36,7 @@ const tHeads:string[] = [
 
 const handleEdit=(row : Book) =>{
   console.log("Edit button clicked for row:", row);
+  setSelectedBook(row);
 }
 
     return (

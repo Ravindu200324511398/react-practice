@@ -2,6 +2,7 @@ import Table from 'react-bootstrap/Table';
 import {getBooks} from '../Service/Books/GetBooks';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 export function BookConsole(){
   interface Book {
@@ -48,6 +49,7 @@ const tHeads:string[] = [
             {Object.values(row).map((cell) => (
                <td>{cell}</td>   
             ))}
+            <td><Button variant="outline-info">Update</Button></td>           
           </tr>
         ))}
       </tbody>

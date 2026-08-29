@@ -49,12 +49,15 @@ const tHeads:string[] = [
             {Object.values(row).map((cell) => (
                <td>{cell}</td>   
             ))}
-            <td style={{ padding: '5px' }}>
+            <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
               <Button variant="outline-info">Update</Button>
               <Button variant="outline-danger">Delete</Button>
             </td>
           </tr>
         ))}
+
+        
+
       </tbody>
     </Table>
         </>

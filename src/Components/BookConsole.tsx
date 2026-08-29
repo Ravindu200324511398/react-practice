@@ -1,6 +1,22 @@
 import Table from 'react-bootstrap/Table';
+import {getBooks} from '../Service/Books/GetBooks';
+import { useEffect } from 'react';
 
 export function BookConsole(){
+
+useEffect(() => {
+    const loadData = async () => {
+        try{
+            const bookDetails = await getBooks();
+            console.log("Book details:", bookDetails);
+        } catch (error) {
+            console.error("Error loading book details:", error);
+        }
+    };
+    loadData();   
+    },[]);
+
+
 const tHeads:string[] = [
     "Book ID", "Title", "Author", "Genre", "Published Year"
 ];
@@ -10,11 +26,7 @@ const tHeads:string[] = [
         <Table striped bordered hover>
       <thead>
         <tr>
-          {/* <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th> */}
-          {tHeads.map((head) => (
+        {tHeads.map((head) => (
             <th>{head}</th>
           ))}
         </tr>
